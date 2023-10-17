@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  /* border: 1px solid red; */
+}
+
+#root {
+  /* outline: 1px solid blue; */
+}
