@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Cards from './components/Cards';
 import Footer from './components/Footer';
 import Header from './components/Header';
@@ -8,6 +8,12 @@ export default function App() {
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
   const [gameState, setGameState] = useState('');
+
+  useEffect(() => {
+    gameState === ''
+      ? document.body.classList.remove('overflow-hidden')
+      : document.body.classList.add('overflow-hidden');
+  }, [gameState]);
 
   return (
     <>

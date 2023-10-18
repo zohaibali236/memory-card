@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const N = 5;
+const N = 20;
 
 function CreateCard({ name, onClick }) {
   const [src, setSrc] = useState('');
