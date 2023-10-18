@@ -22,15 +22,19 @@ export default function Help({ setShowHelp }) {
         </div>
         <div className='mt-3'>
           <ul className='list-outside list-disc px-4'>
-            <li>Correct selection: +1 point</li>
             <li>
-              Incorrect selection (choosing a card you&apos;ve picked before):
-              Game over, 0 points
+              <span className='font-semibold'>Correct</span> selection: +1 point
+            </li>
+            <li>
+              <span className='font-semibold'>Incorrect</span> selection
+              (choosing a card you&apos;ve picked before):&nbsp;
+              <span className='font-bold italic'>Game over</span>, 0 points
             </li>
           </ul>
           <p className='mt-4'>
-            To win the game, you need to accumulate 20 points without making any
-            incorrect selections. Good luck with your memory challenge!
+            To <span className='font-bold italic'>win</span> the game, you need
+            to accumulate 20 points without making any incorrect selections.
+            Good luck with your memory challenge!
           </p>
           {/* <p>
             In the Pokémon Memory Game, you&apos;ll have a set of 20 Pokémon
