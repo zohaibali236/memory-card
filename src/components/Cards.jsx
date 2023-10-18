@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+const N = 5;
+
 function CreateCard({ name, onClick }) {
   const [src, setSrc] = useState('');
 
@@ -9,7 +11,7 @@ function CreateCard({ name, onClick }) {
 
   return (
     <div
-      className='flex h-52 w-52 md:w-56 flex-col gap-4 rounded-md border-2 border-blue-300 bg-blue-300 p-1 transition-transform hover:scale-105 hover:cursor-pointer md:h-80'
+      className='flex h-52 w-52 flex-col gap-4 rounded-md border-2 border-blue-300 bg-blue-300 p-1 transition-transform hover:scale-105 hover:cursor-pointer md:h-80 md:w-56'
       onClick={onClick}
     >
       <div className='flex items-center justify-center border-2'>
@@ -35,7 +37,7 @@ export default function Cards({
   const [selected, setSelected] = useState([]);
 
   useEffect(() => {
-    fetch('https://pokeapi.co/api/v2/pokemon?limit=20&offset=0')
+    fetch(`https://pokeapi.co/api/v2/pokemon?limit=${N}&offset=0`)
       .then((response) => response.json())
       .then((result) => {
         result = result.results.map((i) => i.name);
@@ -44,10 +46,26 @@ export default function Cards({
       });
   }, [gameState]);
 
+  const list = pokemons.filter((i, index) => {
+    return index < 5;
+  });
+
+  useEffect(() => {
+    console.log(currentScore);
+    if (currentScore === N) {
+      setGameState('Win');
+      setBestScore(currentScore);
+      setSelected([]);
+      setScore(0);
+    }
+  }, [currentScore, setGameState, setBestScore, setScore]);
+
   return (
-    <main className='grid grid-cols-1 place-items-center gap-y-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
-      {pokemons.map((i, index) => {
-        if (index >= 5) return null;
+    <>
+      {list.map((i) => {
+        if (selected.length !== N && list.every((i) => selected.includes(i))) {
+          setPokemons((p) => [...p.sort(() => Math.random() - 0.5)]);
+        }
         return (
           <CreateCard
             key={i}
@@ -58,7 +76,7 @@ export default function Cards({
                 setBestScore(currentScore);
                 setSelected([]);
                 setScore(0);
-                console.log(selected);
+                // console.log(selected);
               } else {
                 setScore((score) => score + 1);
                 setSelected((list) => [...list, i]);
@@ -68,7 +86,7 @@ export default function Cards({
           />
         );
       })}
-    </main>
+    </>
   );
 }
 

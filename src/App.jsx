@@ -14,16 +14,18 @@ export default function App() {
       {gameState !== '' && (
         <Modal text={`You ${gameState}`} {...{ setGameState, setScore }} />
       )}
-      <Header current={score} best={bestScore} />
-      <Cards
-        {...{
-          currentScore: score,
-          setScore,
-          setBestScore,
-          gameState,
-          setGameState,
-        }}
-      />
+      <Header current={score} best={bestScore} />{' '}
+      <main className='flex flex-wrap justify-center gap-4'>
+        <Cards
+          {...{
+            currentScore: score,
+            setScore,
+            setBestScore,
+            gameState,
+            setGameState,
+          }}
+        />
+      </main>
       <Footer />
     </>
   );
