@@ -10,7 +10,7 @@ export default function Help({ setShowHelp }) {
         target === modalContainer.current && setShowHelp(false);
       }}
     >
-      <div className='h-72 w-96 rounded-xl bg-white p-4'>
+      <div className='h-72 w-96 rounded-xl bg-white p-6'>
         <div className='flex justify-between'>
           <h1 className='flex items-center text-2xl'>How to Play</h1>
           <button
